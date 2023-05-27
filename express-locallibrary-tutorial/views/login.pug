@@ -1,0 +1,29 @@
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/stylesheets/login.css')
+  body
+      div(class="form-content")
+        if title == "sign in"
+          h1 登录
+        else if title == "sign up"
+          h1 注册
+        form(action="" method="post")
+          label(for="name") 用户名（邮箱）：
+          input(type="text" id="name" name="name" placeholder="123@hust.edu.cn" required)
+          label(for="password") 密码：（5-8位）
+          input(type="password" id="password" name="password" placeholder="123456" required)
+          if title == "sign up"
+            label(for="ack-password") 确认密码：（5-8位）
+            input(type="password" id="ack-password" name="ack_password" placeholder="123456" required)
+          button(type="submit") #{title}
+          if title == "sign in"
+            a(href="/users/signup") 注册
+          else if title == "sign up"
+            a(href="/users/signin") 登录
+        if errors
+          ul
+            for error in errors
+              li  #{error.msg}

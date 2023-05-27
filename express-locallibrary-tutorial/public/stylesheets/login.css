@@ -1,0 +1,17 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+.form-content {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+input {
+  display: block;
+}
+a {
+  text-decoration: none;
+  margin-left: 50px;
+}

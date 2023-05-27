@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+    }
+    .form-content {
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    input {
+      display: block;
+    }
+    .signup{
+        text-decoration: none;
+        margin-left: 50px;
+    }
+  </style>
+  <body>
+    <div class="form-content">
+      <h1>登录</h1>
+      <form action="/users/signin" method="post">
+        <label for="name">用户名（邮箱）：</label>
+        <input type="text" id="name" name="name" placeholder="123@hust.edu.cn" required/>
+        <label for="password">密码：(5-8位)</label>
+        <input type="text" id="password" name="password" placeholder="123456" required/>
+        <button type="submit">sign in</button>
+        <a href="./signup.html" class="signup">sign up</a>
+      </form>
+    </div>
+  </body> 
+</html>
