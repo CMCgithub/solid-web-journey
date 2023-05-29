@@ -1,4 +1,3 @@
-### Git 仓库地址：https://github.com/CMCgithub/solid-web-journey.git
 
 1. 本地图书馆管理系统：
 采用 express 框架编写服务器实现路由，并通过 pug 模板引擎和远程 MongoDB 数据库数据实现前端页面，由
