@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1 #{answer.homework.title}答案
+  p 提交者：#{answer.student.name}
+  p 答案：
+  textarea(id="content",name="content",rows="5",cols="33",required) #{answer.content}

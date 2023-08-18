@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 Hi, #{teacher.name}
+    ul
+      li
+        p 姓名：#{teacher.name}
+      li
+        p 邮箱：#{teacher.email}
+      li
+        p 个人简介：
+        textarea(name="personalProfile",id="personalProfile",cols="30",rows="5") #{teacher.personalProfile}
+      li
+        p 课程：#{teacher.course}
+      li
+        a(href="/teacher/student_list") 学生列表
+      li
+        a(href="/teacher/homework_list") 作业列表

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>作业系统-登录</title>
+    <style>
+      body {
+        background: rgb(208, 221, 174);
+      }
+      .main {
+        width: 480px;
+        height: 550px;
+        border: #242222 solid 1px;
+        border-radius: 5%;
+        background-image: linear-gradient(
+          to bottom right,
+          rgb(248, 222, 222),
+          wheat
+        );
+        margin: 10px auto 100px auto;
+        box-shadow: 5px 5px 10px 5px #ccc inset;
+      }
+      .content {
+        width: 323px;
+        height: auto;
+        margin: 110px auto;
+        position: relative;
+      }
+      h1 {
+        font-size: 32px;
+        color: #ffffff;
+        font-family: Times;
+        margin-top: 60px;
+        text-align: right;
+        margin-bottom: 14px;
+      }
+      input {
+        width: 302px;
+        height: 43px;
+        border: 1px #6a6f73 solid;
+        margin: 20px 0 28px 10px;
+      }
+      input:nth-of-type(2){
+        margin-bottom: 0px;
+      }
+      button {
+        width: 60px;
+        height: 30px;
+        background: #509ed2;
+        border-radius: 10%;
+        border: none;
+        margin: 15px 0 20px 10px;
+        font-size: 15px;
+        color: #222424;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      button:hover {
+        font-size: 18px;
+        box-shadow: 2px 1px #888888;
+      }
+      a {
+       margin-left: 20px;
+        font-size: 20px;
+        color: #8b8c8b;
+        text-decoration: none;
+      }
+      a:hover {
+        color: white;
+      }
+      hr:nth-of-type(2n + 1) {
+        border: 1px #fff solid;
+        margin-bottom: 4px;
+      }
+      hr:nth-of-type(2n) {
+        border: 3px #fff solid;
+      }
+      p{
+        margin: 10px auto;
+        height: 30px;
+      }
+      #identity1,
+      #identity2 {
+        width: 10px;
+        height: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center;">你好，欢迎登录作业系统：</h1>
+    <div class="main">
+      <div class="content">
+        <h1>USER LOGIN</h1>
+        <hr />
+        <hr />
+        <form action="/users/signin" method="post">
+          <label for="email">邮箱地址</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="邮箱地址"
+            required
+          />
+          <label for="password">密码：</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="(5-8位)"
+            required
+          />
+          <p>
+            您的身份：
+            <span>
+              <input
+                type="radio"
+                id="identity1"
+                name="identity"
+                value="teacher"
+                required
+              />
+              <label for="identity1">教师</label>
+              <input
+                type="radio"
+                id="identity2"
+                name="identity"
+                value="student"
+                required
+              />
+              <label for="identity2">学生</label>
+            </span>
+          </p>
+          <button type="submit">登录</button>
+          <a href="/users/signup">没有账户，前往注册？</a>
+        </form>
+        <hr />
+        <hr />
+      </div>
+    </div>
+  </body>
+</html>

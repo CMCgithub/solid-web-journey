@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h2 课程： #{teacher.course}
+  ul
+    each homework in teacher.homework
+        li
+          a(href=homework.url) #{homework.title}
+    else
+        li You haven't published your homework yet.
+  if isTeacher === true
+    a(href = '/teacher/assign_homework') 发布新作业

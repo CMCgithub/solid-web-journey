@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 发布新作业
+  form(method="post")
+    label(for="title") title:
+    input(type="text",id="title",name="title",required)
+    label(for="content") content:
+    textarea(id="content",name="content",rows="5",cols="33",required)
+    button(type="submit") 提交

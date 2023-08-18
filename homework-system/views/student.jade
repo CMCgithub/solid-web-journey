@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1 Hi, #{student.name}
+  ul
+    li
+      p 姓名：#{student.name}
+    li
+      p 邮箱：#{student.email}
+    li
+      p 学号：#{student.studentID}
+    li
+      p 所属课程：
+      ul
+        each teacher in student.teacher 
+            li 
+              a(href="/student/homework_list/" + teacher._id) #{teacher.course}  
+              span 教师: #{teacher.name} 
+        else
+            li You haven't joined any courses yet.

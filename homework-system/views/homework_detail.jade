@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1 #{homework.title}
+  p 发布者：#{homework.teacher.name}
+  p #{homework.content}
+  if  isTeacher
+    p 已提交学生
+    ul
+      each stu in homework.submitters
+        li
+          a(href="/answer/"+ homework._id + "/" + stu._id) #{stu.name}
+      else
+        li No student submitted.
+  else
+    form(method="post" action = "/answer/submit")
+      input(type="hidden",name="student_id",value=student_id)
+      input(type="hidden",name="homework_id",value= homework._id)
+      label(for="content") 填写您的答案：
+      textarea(id="content",name="content",rows="5",cols="33",required)
+        if answer
+          !{answer.content}
+      button(type="submit") 提交
+
+  

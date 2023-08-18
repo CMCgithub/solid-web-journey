@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher homepage</title>
+  </head>
+  <style>
+    body {
+      background: rgb(208, 221, 174);
+    }
+    main {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      width: calc(100vw - 600px);
+      height: calc(100vh - 150px);
+      border: #242222 solid 1px;
+      background-image: linear-gradient(
+        to bottom right,
+        rgb(248, 222, 222),
+        wheat
+      );
+      margin: 80px auto 50px auto;
+    }
+    .col_1 {
+      background-color: aqua;
+    }
+    .content {
+      background-color: aliceblue;
+    }
+    textarea {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+    textarea {
+      padding: 10px;
+      max-width: 100%;
+      line-height: 1.5;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-shadow: 1px 1px 1px #999;
+    }
+  </style>
+  <body>
+    <main>
+      <div class="col_1">
+        <h1>Welcome to homework system:</h1>
+        <p>This is a simple website for learning.</p>
+        <h2>当前系统人数：</h2>
+        <table>
+            <tr>
+                <td>教师:</td>
+                <td>xxx</td>
+            </tr>
+            <tr>
+                <td>学生：</td>
+                <td>xxx</td>
+            </tr>
+        </table>
+      </div>
+      <div class="content">
+        <h1>Hi,...</h1>
+        <ul class="nav">
+          <li>
+            <p>姓名：xxx</p>
+          </li>
+          <li>
+            <p>邮箱：xxxxxxxx</p>
+          </li>
+          <li>
+            <p>个人简介：</p>
+            <textarea
+              name="personalProfile"
+              id="personalProfile"
+              cols="30"
+              rows="5"
+            ></textarea>
+          </li>
+          <li>
+            <p>课程：xxxx</p>
+          </li>
+          <li>
+            <a href="#">学生列表</a>
+          </li>
+          <li>
+            <a href="#">作业列表</a>
+          </li>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>

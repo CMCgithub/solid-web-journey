@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h2 学生姓名：#{student.name}
+  p 邮箱地址：#{student.email}
+  p 学号： #{student.studentID}
+  p 所属教师：
+  ul
+    each teacher in student.teacher 
+        li #{teacher.name}  课程：#{teacher.course}
+    else
+        li There are no teachers.

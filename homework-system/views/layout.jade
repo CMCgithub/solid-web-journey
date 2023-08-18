@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport",content="width=device-width, initial-scale=1.0")
+    title homework system
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    main
+      div(class="col_1")
+        h1 Welcome to homework system:
+        p This is a simple website for learning.
+        h2 当前系统人数：
+        table
+          tr
+            td 教师:
+            td #{numTeachers}
+          tr
+            td 学生：
+            td #{numStudents}
+        a(href='/users/signin') 登录
+        a(href='/users/signout') 登出
+        a(href='/') 主页
+      div(class="content")
+        block content 

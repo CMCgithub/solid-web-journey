@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Hi, #{teacher.name}
+  ul
+    each stu in teacher.student
+        li
+          a(href=stu.url) #{stu.name}
+    else
+        li There are no students.
