@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 将学生添加到你的课程或将已有学生删除
+  ul
+    each stu in students
+      li
+        //- 学生的教师数组中存在该教师
+        if stu.teacher.some(e => e.name === teacher.name)
+              p #{stu.name}
+              a(href="/teacher/delete/"+ stu._id) 删除
+        else
+          p #{stu.name} #{stu.teacher.name}
+          a(href="/teacher/add/"+ stu._id) 添加
+    else
+        li There are no students.

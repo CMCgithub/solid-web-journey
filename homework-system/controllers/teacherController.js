@@ -32,6 +32,7 @@ exports.index = asyncHandler(async function (req, res, next) {
     return next(err);
   }
   return res.status(200).render("teacher", {
+    isTeacher:true,
     teacher: teacher,
     numTeachers: numTeachers,
     numStudents: numStudents,
@@ -88,7 +89,7 @@ exports.homework_list = asyncHandler(async function (req, res, next) {
     ]);
   }
   return res.status(200).render("homework_list", {
-    isTeacher:isTeacher,
+    isTeacher: isTeacher,
     teacher: teacher,
     numTeachers: numTeachers,
     numStudents: numStudents,
@@ -173,3 +174,97 @@ exports.assign_homework_post = [
     }
   }),
 ];
+exports.manage_student = asyncHandler(async function (req, res, next) {
+  var email;
+  jwt.verify(req.session.token, config.secret, (err, decode) => {
+    if (err) {
+      debug(err);
+      req.session = null;
+      return res.status(401).render("index", {
+        title: "登录状态过期",
+      });
+    }
+    email = decode.email;
+  });
+  var [students, teacher, numTeachers, numStudents] = await Promise.all([
+    Student.find().populate("teacher").exec(),
+    Teacher.findOne({ email: email }).exec(),
+    Teacher.countDocuments({}).exec(),
+    Student.countDocuments({}).exec(),
+  ]);
+  return res.status(200).render("manage_student", {
+    students: students,
+    teacher: teacher,
+    numTeachers: numTeachers,
+    numStudents: numStudents,
+  });
+});
+exports.delete_student = asyncHandler(async function (req, res, next) {
+  var email;
+  jwt.verify(req.session.token, config.secret, (err, decode) => {
+    if (err) {
+      debug(err);
+      req.session = null;
+      return res.status(401).render("index", {
+        title: "登录状态过期",
+      });
+    }
+    email = decode.email;
+  });
+  var [student, teacher, numTeachers, numStudents] = await Promise.all([
+    Student.findById(req.params.student_id).exec(),
+    Teacher.findOne({ email: email }).exec(),
+    Teacher.countDocuments({}).exec(),
+    Student.countDocuments({}).exec(),
+  ]);
+  for (var i = 0; i < teacher.student.length; i++) {
+    if (teacher.student[i].toHexString() == req.params.student_id) {
+      teacher.student.splice(i, 1);
+      i--;
+    }
+  }
+  for (var i = 0; i < student.teacher.length; i++) {
+    if (student.teacher[i].toHexString() == teacher._id.toHexString()) {
+      student.teacher.splice(i, 1);
+      i--;
+    }
+  }
+  // /////
+  // 删除教师作业submitters和答案对中的学生
+  // ////
+  await teacher.save();
+  await student.save();
+  return res.status(200).render("index", {
+    title: "学生已删除",
+    numTeachers: numTeachers,
+    numStudents: numStudents,
+  });
+});
+exports.add_student = asyncHandler(async function (req, res, next) {
+  var email;
+  jwt.verify(req.session.token, config.secret, (err, decode) => {
+    if (err) {
+      debug(err);
+      req.session = null;
+      return res.status(401).render("index", {
+        title: "登录状态过期",
+      });
+    }
+    email = decode.email;
+  });
+  var [student, teacher, numTeachers, numStudents] = await Promise.all([
+    Student.findById(req.params.student_id).exec(),
+    Teacher.findOne({ email: email }).exec(),
+    Teacher.countDocuments({}).exec(),
+    Student.countDocuments({}).exec(),
+  ]);
+  teacher.student.push(student);
+  student.teacher.push(teacher);
+  await teacher.save();
+  await student.save();
+  return res.status(200).render("index", {
+    title: "学生已添加",
+    numTeachers: numTeachers,
+    numStudents: numStudents,
+  });
+});

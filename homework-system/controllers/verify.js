@@ -4,9 +4,6 @@ exports.verifyToken = (req, res, next) => {
   let token = req.session.token;
 
   if (!token) {
-    // res.status(403).send({
-    //   message: "No token provided!",
-    // });
     return res.redirect("/users/signin");
   }
   try {

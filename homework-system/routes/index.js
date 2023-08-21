@@ -8,11 +8,16 @@ var homework_controller = require("../controllers/homeworkController");
 var answer_controller = require("../controllers/answerController");
 /* GET home page. */
 router.get('/', verify.verifyToken);
+//teacher
 router.get('/teacher',teacher_controller.index);
 router.get('/teacher/student_list',teacher_controller.student_list);
 router.get('/teacher/homework_list',teacher_controller.homework_list);
 router.get('/teacher/assign_homework',teacher_controller.assign_homework_get);
 router.post('/teacher/assign_homework',teacher_controller.assign_homework_post);
+
+router.get('/teacher/manage_student',teacher_controller.manage_student);
+router.get('/teacher/delete/:student_id',teacher_controller.delete_student);
+router.get('/teacher/add/:student_id',teacher_controller.add_student);
 //student
 router.get('/student',student_controller.index);
 router.get('/detail/student/:id',student_controller.detail);
